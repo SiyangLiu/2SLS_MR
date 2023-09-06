@@ -1,8 +1,8 @@
 #!/usr/bin/R
 #liusiyang 20210315
 #---
-#perform cox regression on 50 biomarkers for stroke reoccurrence or death; 
-#perform logistic regression on 50 biomarkers for MRS status
+#perform cox regression on biomarkers for stroke reoccurrence or death;
+#perform logistic regression on biomarkers for MRS status
 #---
 #install.packages(c("survival", "survminer","metafor"))
 library("survival")
@@ -95,46 +95,46 @@ if(flag=="All" | flag=="HST" | flag=="HSF"){
 
 if(T){
     if(flag=="All"){
-    riskfactors<-c("BSL_Fib_PRS","BSL_DD_PRS","BSL_GA_PRS","BSL_esRAGE_PRS","BSL_FFA_PRS","BSL_sRAGE_PRS","BSL_AGEs_PRS","BSL_FPG_PRS","BSL_HbA1c_PRS","BSL_Lp_PLA2_A_PRS","BSL_IL6R_PRS","BSL_Lp_PLA2_MASS_PRS","BSL_MCP1_PRS","BSL_hsCRP_PRS","BSL_IL1RA_PRS","BSL_IL6_PRS","BSL_Cr_PRS","eGFR_PRS","BSL_CYSC_PRS","BSL_UA_PRS","BSL_PCSK9_PRS","BSL_TG_PRS","BSL_HDL_PRS","BSL_LDL_PRS","CEC_PRS","Apo_AI_PRS","Apo_CII_PRS","Apo_B_PRS","BSL_ANGPTL3_PRS","Apo_CIII_PRS","BSL_Lpa_PRS","Apo_AII_PRS","Apo_E_PRS","BSL_LDL_R_PRS","BSL_B12_PRS","BSL_HCY_PRS","BSL_MMA_PRS","BSL_B9_PRS","Bbetaine_PRS","TMAVA_PRS","BETAINE_PRS","Carnitine_PRS","TMAO_PRS","Choline_PRS","tml_PRS","BSL_ADPN_PRS","BSL_YKL40_PRS","BSL_CP_PRS","BSL_CHOL_PRS")
-    riskfactors1<-c("BSL_Fib","BSL_DD","BSL_GA","BSL_esRAGE","BSL_FFA","BSL_sRAGE","BSL_AGEs","BSL_FPG","BSL_HbA1c","BSL_Lp_PLA2_A","BSL_IL6R","BSL_Lp_PLA2_MASS","BSL_MCP1","BSL_hsCRP","BSL_IL1RA","BSL_IL6","BSL_Cr","eGFR","BSL_CYSC","BSL_UA","BSL_PCSK9","BSL_TG","BSL_HDL","BSL_LDL","CEC","Apo_AI","Apo_CII","Apo_B","BSL_ANGPTL3","Apo_CIII","BSL_Lpa","Apo_AII","Apo_E","BSL_LDL_R","BSL_B12","BSL_HCY","BSL_MMA","BSL_B9","Bbetaine","TMAVA","BETAINE","Carnitine","TMAO","Choline","tml","BSL_ADPN","BSL_YKL40","BSL_CP","BSL_CHOL")
-    colors<-c("#FF0000","#FF0000","#00A08A","#00A08A","#00A08A","#00A08A","#00A08A","#00A08A","#00A08A","#A42820","#A42820","#A42820","#A42820","#A42820","#A42820","#A42820","#5BBCD6","#5BBCD6","#5BBCD6","#5BBCD6","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#7294D4","#7294D4","#7294D4","#7294D4","#5F5647","#5F5647","#5F5647","#5F5647","#5F5647","#5F5647","#5F5647","#000000","#000000","#000000","#000000")
-    Biomarkers<-c("Fib","D-dimer","GA","esRAGE","FFA","sRAGE","AGEs","FPG","HbA1c","Lp-PLA2_A","IL6R","Lp-PLA2_Mass","MCP1","hs-CRP","IL-1RA","IL6","Cr","eGFR","CysC","UA","PCSK9","TG","HDL","LDL","CEC","apo-AI","apo-CII","apo-B","ANGPTL3","apo-CIII","Lp(a)","apo-AII","apo-E","LDL-R","B12","Hcy","MMA","B9","Bbetaine","TMAVA","Betaine","Carnitine","TMAO","Choline","TML","ADPN","YKL40","C-peptide","TC")
+    riskfactors<-c("BSL_Fib_PRS","BSL_DD_PRS")
+    riskfactors1<-c("BSL_Fib","BSL_DD")
+    colors<-c("#FF0000","#FF0000")
+    Biomarkers<-c("Fib","D-dimer")
     }else if(flag=="HST"){
-riskfactors<-c("BSL_DD_PRS","BSL_Fib_PRS","BSL_AGEs_PRS","BSL_FFA_PRS","BSL_GA_PRS","BSL_esRAGE_PRS","BSL_sRAGE_PRS","BSL_FPG_PRS","BSL_HbA1c_PRS","BSL_IL1RA_PRS","BSL_IL6_PRS","BSL_IL6R_PRS","BSL_Lp_PLA2_A_PRS","BSL_Lp_PLA2_MASS_PRS","BSL_MCP1_PRS","BSL_YKL40_PRS","BSL_hsCRP_PRS","BSL_CYSC_PRS","BSL_Cr_PRS","BSL_UA_PRS","eGFR_PRS","Apo_AI_PRS","Apo_AII_PRS","Apo_B_PRS","Apo_CII_PRS","Apo_CIII_PRS","Apo_E_PRS","BSL_ADPN_PRS","BSL_ANGPTL3_PRS","BSL_CHOL_PRS","BSL_CP_PRS","BSL_HDL_PRS","BSL_LDL_PRS","BSL_LDL_R_PRS","BSL_Lpa_PRS","BSL_PCSK9_PRS","BSL_TG_PRS","CEC_PRS","BSL_B12_PRS","BSL_B9_PRS","BSL_HCY_PRS","BSL_MMA_PRS","BETAINE_PRS","Bbetaine_PRS","Carnitine_PRS","Choline_PRS","TMAO_PRS","TMAVA_PRS","tml_PRS")
-riskfactors1<-c("BSL_DD","BSL_Fib","BSL_AGEs","BSL_FFA","BSL_GA","BSL_esRAGE","BSL_sRAGE","BSL_FPG","BSL_HbA1c","BSL_IL1RA","BSL_IL6","BSL_IL6R","BSL_Lp_PLA2_A","BSL_Lp_PLA2_MASS","BSL_MCP1","BSL_YKL40","BSL_hsCRP","BSL_CYSC","BSL_Cr","BSL_UA","eGFR","Apo_AI","Apo_AII","Apo_B","Apo_CII","Apo_CIII","Apo_E","BSL_ADPN","BSL_ANGPTL3","BSL_CHOL","BSL_CP","BSL_HDL","BSL_LDL","BSL_LDL_R","BSL_Lpa","BSL_PCSK9","BSL_TG","CEC","BSL_B12","BSL_B9","BSL_HCY","BSL_MMA","BETAINE","Bbetaine","Carnitine","Choline","TMAO","TMAVA","tml")
-colors<-c("#FF0000","#FF0000","#00A08A","#00A08A","#00A08A","#00A08A","#00A08A","#00A08A","#00A08A","#A42820","#A42820","#A42820","#A42820","#A42820","#A42820","#A42820","#A42820","#5BBCD6","#5BBCD6","#5BBCD6","#5BBCD6","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#7294D4","#7294D4","#7294D4","#7294D4","#5F5647","#5F5647","#5F5647","#5F5647","#5F5647","#5F5647","#5F5647")
-Biomarkers<-c("D-dimer","Fib","AGEs","FFA","GA","esRAGE","sRAGE","FPG","HbA1c","IL-1RA","IL6","IL6R","Lp-PLA2_A","Lp-PLA2_Mass","MCP1","YKL40","hs-CRP","CysC","Cr","UA","eGFR","apo-AI","apo-AII","apo-B","apo-CII","apo-CIII","apo-E","ADPN","ANGPTL3","TC","C-peptide","HDL","LDL","LDL-R","Lp(a)","PCSK9","TG","CEC","B12","B9","Hcy","MMA","Betaine","Bbetaine","Carnitine","Choline","TMAO","TMAVA","TML")
-groups<-c("BSL_DD_Group","BSL_Fib_Group","BSL_AGEs_Group","BSL_FFA_Group","BSL_GA_Group","BSL_esRAGE_Group","BSL_sRAGE_Group","BSL_FPG_Group","BSL_HbA1c_Group","BSL_IL1RA_Group","BSL_IL6_Group","BSL_IL6R_Group","BSL_Lp_PLA2_A_Group","BSL_Lp_PLA2_MASS_Group","BSL_MCP1_Group","BSL_YKL40_Group","BSL_hsCRP_Group","BSL_CYSC_Group","BSL_Cr_Group","BSL_UA_Group","eGFR_Group","Apo_AI_Group","Apo_AII_Group","Apo_B_Group","Apo_CII_Group","Apo_CIII_Group","Apo_E_Group","BSL_ADPN_Group","BSL_ANGPTL3_Group","BSL_CHOL_Group","BSL_CP_Group","BSL_HDL_Group","BSL_LDL_Group","BSL_LDL_R_Group","BSL_Lpa_Group","BSL_PCSK9_Group","BSL_TG_Group","CEC_Group","BSL_B12_Group","BSL_B9_Group","BSL_HCY_Group","BSL_MMA_Group","BETAINE_Group","Bbetaine_Group","Carnitine_Group","Choline_Group","TMAO_Group","TMAVA_Group","tml_Group")
+    riskfactors<-c("BSL_Fib_PRS","BSL_DD_PRS")
+    riskfactors1<-c("BSL_Fib","BSL_DD")
+    colors<-c("#FF0000","#FF0000")
+    Biomarkers<-c("Fib","D-dimer")
     }else if(flag=="HSF"){
-#No.2 "BSL_AGEs_PRS",
-riskfactors<-c("BSL_DD_PRS","BSL_Fib_PRS","BSL_AGEs_PRS","BSL_FFA_PRS","BSL_GA_PRS","BSL_esRAGE_PRS","BSL_sRAGE_PRS","BSL_FPG_PRS","BSL_HbA1c_PRS","BSL_IL1RA_PRS","BSL_IL6_PRS","BSL_IL6R_PRS","BSL_Lp_PLA2_A_PRS","BSL_Lp_PLA2_MASS_PRS","BSL_MCP1_PRS","BSL_YKL40_PRS","BSL_hsCRP_PRS","BSL_CYSC_PRS","BSL_Cr_PRS","BSL_UA_PRS","eGFR_PRS","Apo_AI_PRS","Apo_AII_PRS","Apo_B_PRS","Apo_CII_PRS","Apo_CIII_PRS","Apo_E_PRS","BSL_ADPN_PRS","BSL_ANGPTL3_PRS","BSL_CHOL_PRS","BSL_CP_PRS","BSL_HDL_PRS","BSL_LDL_PRS","BSL_LDL_R_PRS","BSL_Lpa_PRS","BSL_PCSK9_PRS","BSL_TG_PRS","CEC_PRS","BSL_B12_PRS","BSL_B9_PRS","BSL_HCY_PRS","BSL_MMA_PRS","BETAINE_PRS","Bbetaine_PRS","Carnitine_PRS","Choline_PRS","TMAO_PRS","TMAVA_PRS","tml_PRS")
-riskfactors1<-c("BSL_DD","BSL_Fib","BSL_AGEs","BSL_FFA","BSL_GA","BSL_esRAGE","BSL_sRAGE","BSL_FPG","BSL_HbA1c","BSL_IL1RA","BSL_IL6","BSL_IL6R","BSL_Lp_PLA2_A","BSL_Lp_PLA2_MASS","BSL_MCP1","BSL_YKL40","BSL_hsCRP","BSL_CYSC","BSL_Cr","BSL_UA","eGFR","Apo_AI","Apo_AII","Apo_B","Apo_CII","Apo_CIII","Apo_E","BSL_ADPN","BSL_ANGPTL3","BSL_CHOL","BSL_CP","BSL_HDL","BSL_LDL","BSL_LDL_R","BSL_Lpa","BSL_PCSK9","BSL_TG","CEC","BSL_B12","BSL_B9","BSL_HCY","BSL_MMA","BETAINE","Bbetaine","Carnitine","Choline","TMAO","TMAVA","tml")
-colors<-c("#FF0000","#FF0000","#00A08A","#00A08A","#00A08A","#00A08A","#00A08A","#00A08A","#00A08A","#A42820","#A42820","#A42820","#A42820","#A42820","#A42820","#A42820","#A42820","#5BBCD6","#5BBCD6","#5BBCD6","#5BBCD6","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#7294D4","#7294D4","#7294D4","#7294D4","#5F5647","#5F5647","#5F5647","#5F5647","#5F5647","#5F5647","#5F5647")
-Biomarkers<-c("D-dimer","Fib","AGEs","FFA","GA","esRAGE","sRAGE","FPG","HbA1c","IL-1RA","IL6","IL6R","Lp-PLA2_A","Lp-PLA2_Mass","MCP1","YKL40","hs-CRP","CysC","Cr","UA","eGFR","apo-AI","apo-AII","apo-B","apo-CII","apo-CIII","apo-E","ADPN","ANGPTL3","TC","C-peptide","HDL","LDL","LDL-R","Lp(a)","PCSK9","TG","CEC","B12","B9","Hcy","MMA","Betaine","Bbetaine","Carnitine","Choline","TMAO","TMAVA","TML")
-groups<-c("BSL_DD_Group","BSL_Fib_Group","BSL_AGEs_Group","BSL_FFA_Group","BSL_GA_Group","BSL_esRAGE_Group","BSL_sRAGE_Group","BSL_FPG_Group","BSL_HbA1c_Group","BSL_IL1RA_Group","BSL_IL6_Group","BSL_IL6R_Group","BSL_Lp_PLA2_A_Group","BSL_Lp_PLA2_MASS_Group","BSL_MCP1_Group","BSL_YKL40_Group","BSL_hsCRP_Group","BSL_CYSC_Group","BSL_Cr_Group","BSL_UA_Group","eGFR_Group","Apo_AI_Group","Apo_AII_Group","Apo_B_Group","Apo_CII_Group","Apo_CIII_Group","Apo_E_Group","BSL_ADPN_Group","BSL_ANGPTL3_Group","BSL_CHOL_Group","BSL_CP_Group","BSL_HDL_Group","BSL_LDL_Group","BSL_LDL_R_Group","BSL_Lpa_Group","BSL_PCSK9_Group","BSL_TG_Group","CEC_Group","BSL_B12_Group","BSL_B9_Group","BSL_HCY_Group","BSL_MMA_Group","BETAINE_Group","Bbetaine_Group","Carnitine_Group","Choline_Group","TMAO_Group","TMAVA_Group","tml_Group")
+    #No.2 "BSL_AGEs_PRS",
+    riskfactors<-c("BSL_Fib_PRS","BSL_DD_PRS")
+    riskfactors1<-c("BSL_Fib","BSL_DD")
+    colors<-c("#FF0000","#FF0000")
+    Biomarkers<-c("Fib","D-dimer")
     }else if(flag=="CCS"){
         if(ccs_type==1){
-riskfactors<-c("BSL_DD_PRS","BSL_Fib_PRS","BSL_AGEs_PRS","BSL_FFA_PRS","BSL_GA_PRS","BSL_esRAGE_PRS","BSL_sRAGE_PRS","BSL_FPG_PRS","BSL_HbA1c_PRS","BSL_IL1RA_PRS","BSL_IL6_PRS","BSL_IL6R_PRS","BSL_Lp_PLA2_A_PRS","BSL_Lp_PLA2_MASS_PRS","BSL_MCP1_PRS","BSL_YKL40_PRS","BSL_hsCRP_PRS","BSL_CYSC_PRS","BSL_Cr_PRS","BSL_UA_PRS","eGFR_PRS","Apo_AI_PRS","Apo_AII_PRS","Apo_B_PRS","Apo_CII_PRS","Apo_CIII_PRS","Apo_E_PRS","BSL_ADPN_PRS","BSL_ANGPTL3_PRS","BSL_CHOL_PRS","BSL_CP_PRS","BSL_HDL_PRS","BSL_LDL_PRS","BSL_LDL_R_PRS","BSL_Lpa_PRS","BSL_PCSK9_PRS","BSL_TG_PRS","CEC_PRS","BSL_B12_PRS","BSL_B9_PRS","BSL_HCY_PRS","BSL_MMA_PRS","BETAINE_PRS","Bbetaine_PRS","Carnitine_PRS","Choline_PRS","TMAO_PRS","TMAVA_PRS","tml_PRS")
-riskfactors1<-c("BSL_DD","BSL_Fib","BSL_AGEs","BSL_FFA","BSL_GA","BSL_esRAGE","BSL_sRAGE","BSL_FPG","BSL_HbA1c","BSL_IL1RA","BSL_IL6","BSL_IL6R","BSL_Lp_PLA2_A","BSL_Lp_PLA2_MASS","BSL_MCP1","BSL_YKL40","BSL_hsCRP","BSL_CYSC","BSL_Cr","BSL_UA","eGFR","Apo_AI","Apo_AII","Apo_B","Apo_CII","Apo_CIII","Apo_E","BSL_ADPN","BSL_ANGPTL3","BSL_CHOL","BSL_CP","BSL_HDL","BSL_LDL","BSL_LDL_R","BSL_Lpa","BSL_PCSK9","BSL_TG","CEC","BSL_B12","BSL_B9","BSL_HCY","BSL_MMA","BETAINE","Bbetaine","Carnitine","Choline","TMAO","TMAVA","tml")
-colors<-c("#FF0000","#FF0000","#00A08A","#00A08A","#00A08A","#00A08A","#00A08A","#00A08A","#00A08A","#A42820","#A42820","#A42820","#A42820","#A42820","#A42820","#A42820","#A42820","#5BBCD6","#5BBCD6","#5BBCD6","#5BBCD6","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#7294D4","#7294D4","#7294D4","#7294D4","#5F5647","#5F5647","#5F5647","#5F5647","#5F5647","#5F5647","#5F5647")
-Biomarkers<-c("D-dimer","Fib","AGEs","FFA","GA","esRAGE","sRAGE","FPG","HbA1c","IL-1RA","IL6","IL6R","Lp-PLA2_A","Lp-PLA2_Mass","MCP1","YKL40","hs-CRP","CysC","Cr","UA","eGFR","apo-AI","apo-AII","apo-B","apo-CII","apo-CIII","apo-E","ADPN","ANGPTL3","TC","C-peptide","HDL","LDL","LDL-R","Lp(a)","PCSK9","TG","CEC","B12","B9","Hcy","MMA","Betaine","Bbetaine","Carnitine","Choline","TMAO","TMAVA","TML")
-groups<-c("BSL_DD_Group","BSL_Fib_Group","BSL_AGEs_Group","BSL_FFA_Group","BSL_GA_Group","BSL_esRAGE_Group","BSL_sRAGE_Group","BSL_FPG_Group","BSL_HbA1c_Group","BSL_IL1RA_Group","BSL_IL6_Group","BSL_IL6R_Group","BSL_Lp_PLA2_A_Group","BSL_Lp_PLA2_MASS_Group","BSL_MCP1_Group","BSL_YKL40_Group","BSL_hsCRP_Group","BSL_CYSC_Group","BSL_Cr_Group","BSL_UA_Group","eGFR_Group","Apo_AI_Group","Apo_AII_Group","Apo_B_Group","Apo_CII_Group","Apo_CIII_Group","Apo_E_Group","BSL_ADPN_Group","BSL_ANGPTL3_Group","BSL_CHOL_Group","BSL_CP_Group","BSL_HDL_Group","BSL_LDL_Group","BSL_LDL_R_Group","BSL_Lpa_Group","BSL_PCSK9_Group","BSL_TG_Group","CEC_Group","BSL_B12_Group","BSL_B9_Group","BSL_HCY_Group","BSL_MMA_Group","BETAINE_Group","Bbetaine_Group","Carnitine_Group","Choline_Group","TMAO_Group","TMAVA_Group","tml_Group")
+            riskfactors<-c("BSL_Fib_PRS","BSL_DD_PRS")
+            riskfactors1<-c("BSL_Fib","BSL_DD")
+            colors<-c("#FF0000","#FF0000")
+            Biomarkers<-c("Fib","D-dimer")
+            groups<-c("BSL_DD_Group","BSL_Fib_Group")
          }else if(ccs_type==2){
-riskfactors<-c("BSL_Fib_PRS","BSL_DD_PRS","BSL_GA_PRS","BSL_esRAGE_PRS","BSL_sRAGE_PRS","BSL_AGEs_PRS","BSL_FPG_PRS","BSL_Lp_PLA2_A_PRS","BSL_IL6R_PRS","BSL_Lp_PLA2_MASS_PRS","BSL_MCP1_PRS","BSL_hsCRP_PRS","BSL_IL1RA_PRS","BSL_IL6_PRS","BSL_Cr_PRS","eGFR_PRS","BSL_CYSC_PRS","BSL_UA_PRS","BSL_PCSK9_PRS","BSL_TG_PRS","BSL_HDL_PRS","BSL_LDL_PRS","CEC_PRS","Apo_AI_PRS","Apo_CII_PRS","Apo_B_PRS","BSL_ANGPTL3_PRS","BSL_Lpa_PRS","Apo_AII_PRS","Apo_E_PRS","BSL_LDL_R_PRS","BSL_B12_PRS","BSL_HCY_PRS","BSL_MMA_PRS","BSL_B9_PRS","Bbetaine_PRS","TMAVA_PRS","BETAINE_PRS","Carnitine_PRS","TMAO_PRS","Choline_PRS","tml_PRS","BSL_ADPN_PRS","BSL_YKL40_PRS","BSL_CP_PRS","BSL_CHOL_PRS","BSL_INS_PRS")
-riskfactors1<-c("BSL_Fib","BSL_DD","BSL_GA","BSL_esRAGE","BSL_sRAGE","BSL_AGEs","BSL_FPG","BSL_Lp_PLA2_A","BSL_IL6R","BSL_Lp_PLA2_MASS","BSL_MCP1","BSL_hsCRP","BSL_IL1RA","BSL_IL6","BSL_Cr","eGFR","BSL_CYSC","BSL_UA","BSL_PCSK9","BSL_TG","BSL_HDL","BSL_LDL","CEC","Apo_AI","Apo_CII","Apo_B","BSL_ANGPTL3","BSL_Lpa","Apo_AII","Apo_E","BSL_LDL_R","BSL_B12","BSL_HCY","BSL_MMA","BSL_B9","Bbetaine","TMAVA","BETAINE","Carnitine","TMAO","Choline","tml","BSL_ADPN","BSL_YKL40","BSL_CP","BSL_CHOL","BSL_INS")
-colors<-c("#FF0000","#FF0000","#00A08A","#00A08A","#00A08A","#00A08A","#00A08A","#A42820","#A42820","#A42820","#A42820","#A42820","#A42820","#A42820","#5BBCD6","#5BBCD6","#5BBCD6","#5BBCD6","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#7294D4","#7294D4","#7294D4","#7294D4","#5F5647","#5F5647","#5F5647","#5F5647","#5F5647","#5F5647","#5F5647","#000000","#000000","#000000","#000000","#000000")
-Biomarkers<-c("Fib","D-dimer","GA","esRAGE","sRAGE","AGEs","FPG","Lp-PLA2_A","IL6R","Lp-PLA2_Mass","MCP1","hs-CRP","IL-1RA","IL6","Cr","eGFR","CysC","UA","PCSK9","TG","HDL","LDL","CEC","apo-AI","apo-CII","apo-B","ANGPTL3","Lp(a)","apo-AII","apo-E","LDL-R","B12","Hcy","MMA","B9","Bbetaine","TMAVA","Betaine","Carnitine","TMAO","Choline","TML","ADPN","YKL40","C-peptide","TC","Insulin")
+            riskfactors<-c("BSL_Fib_PRS","BSL_DD_PRS")
+            riskfactors1<-c("BSL_Fib","BSL_DD")
+            colors<-c("#FF0000","#FF0000")
+            Biomarkers<-c("Fib","D-dimer")
+            groups<-c("BSL_DD_Group","BSL_Fib_Group")
         }else if(ccs_type==3){
-riskfactors<-c("BSL_DD_PRS","BSL_Fib_PRS","BSL_AGEs_PRS","BSL_FFA_PRS","BSL_GA_PRS","BSL_esRAGE_PRS","BSL_sRAGE_PRS","BSL_FPG_PRS","BSL_HbA1c_PRS","BSL_IL1RA_PRS","BSL_IL6_PRS","BSL_IL6R_PRS","BSL_Lp_PLA2_A_PRS","BSL_Lp_PLA2_MASS_PRS","BSL_MCP1_PRS","BSL_YKL40_PRS","BSL_hsCRP_PRS","BSL_CYSC_PRS","BSL_Cr_PRS","BSL_UA_PRS","eGFR_PRS","Apo_AI_PRS","Apo_AII_PRS","Apo_B_PRS","Apo_CII_PRS","Apo_CIII_PRS","Apo_E_PRS","BSL_ADPN_PRS","BSL_ANGPTL3_PRS","BSL_CHOL_PRS","BSL_CP_PRS","BSL_HDL_PRS","BSL_LDL_PRS","BSL_LDL_R_PRS","BSL_Lpa_PRS","BSL_PCSK9_PRS","BSL_TG_PRS","CEC_PRS","BSL_B12_PRS","BSL_B9_PRS","BSL_HCY_PRS","BSL_MMA_PRS","BETAINE_PRS","Bbetaine_PRS","Carnitine_PRS","Choline_PRS","TMAO_PRS","TMAVA_PRS","tml_PRS")
-riskfactors1<-c("BSL_DD","BSL_Fib","BSL_AGEs","BSL_FFA","BSL_GA","BSL_esRAGE","BSL_sRAGE","BSL_FPG","BSL_HbA1c","BSL_IL1RA","BSL_IL6","BSL_IL6R","BSL_Lp_PLA2_A","BSL_Lp_PLA2_MASS","BSL_MCP1","BSL_YKL40","BSL_hsCRP","BSL_CYSC","BSL_Cr","BSL_UA","eGFR","Apo_AI","Apo_AII","Apo_B","Apo_CII","Apo_CIII","Apo_E","BSL_ADPN","BSL_ANGPTL3","BSL_CHOL","BSL_CP","BSL_HDL","BSL_LDL","BSL_LDL_R","BSL_Lpa","BSL_PCSK9","BSL_TG","CEC","BSL_B12","BSL_B9","BSL_HCY","BSL_MMA","BETAINE","Bbetaine","Carnitine","Choline","TMAO","TMAVA","tml")
-colors<-c("#FF0000","#FF0000","#00A08A","#00A08A","#00A08A","#00A08A","#00A08A","#00A08A","#00A08A","#A42820","#A42820","#A42820","#A42820","#A42820","#A42820","#A42820","#A42820","#5BBCD6","#5BBCD6","#5BBCD6","#5BBCD6","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#7294D4","#7294D4","#7294D4","#7294D4","#5F5647","#5F5647","#5F5647","#5F5647","#5F5647","#5F5647","#5F5647")
-Biomarkers<-c("D-dimer","Fib","AGEs","FFA","GA","esRAGE","sRAGE","FPG","HbA1c","IL-1RA","IL6","IL6R","Lp-PLA2_A","Lp-PLA2_Mass","MCP1","YKL40","hs-CRP","CysC","Cr","UA","eGFR","apo-AI","apo-AII","apo-B","apo-CII","apo-CIII","apo-E","ADPN","ANGPTL3","TC","C-peptide","HDL","LDL","LDL-R","Lp(a)","PCSK9","TG","CEC","B12","B9","Hcy","MMA","Betaine","Bbetaine","Carnitine","Choline","TMAO","TMAVA","TML")
-groups<-c("BSL_DD_Group","BSL_Fib_Group","BSL_AGEs_Group","BSL_FFA_Group","BSL_GA_Group","BSL_esRAGE_Group","BSL_sRAGE_Group","BSL_FPG_Group","BSL_HbA1c_Group","BSL_IL1RA_Group","BSL_IL6_Group","BSL_IL6R_Group","BSL_Lp_PLA2_A_Group","BSL_Lp_PLA2_MASS_Group","BSL_MCP1_Group","BSL_YKL40_Group","BSL_hsCRP_Group","BSL_CYSC_Group","BSL_Cr_Group","BSL_UA_Group","eGFR_Group","Apo_AI_Group","Apo_AII_Group","Apo_B_Group","Apo_CII_Group","Apo_CIII_Group","Apo_E_Group","BSL_ADPN_Group","BSL_ANGPTL3_Group","BSL_CHOL_Group","BSL_CP_Group","BSL_HDL_Group","BSL_LDL_Group","BSL_LDL_R_Group","BSL_Lpa_Group","BSL_PCSK9_Group","BSL_TG_Group","CEC_Group","BSL_B12_Group","BSL_B9_Group","BSL_HCY_Group","BSL_MMA_Group","BETAINE_Group","Bbetaine_Group","Carnitine_Group","Choline_Group","TMAO_Group","TMAVA_Group","tml_Group")
+            riskfactors<-c("BSL_Fib_PRS","BSL_DD_PRS")
+            riskfactors1<-c("BSL_Fib","BSL_DD")
+            colors<-c("#FF0000","#FF0000")
+            Biomarkers<-c("Fib","D-dimer")
+            groups<-c("BSL_DD_Group","BSL_Fib_Group")
         }else if(ccs_type==5){
-riskfactors<-c("BSL_Fib_PRS","BSL_DD_PRS","BSL_GA_PRS","BSL_sRAGE_PRS","BSL_AGEs_PRS","BSL_FPG_PRS","BSL_HbA1c_PRS","BSL_Lp_PLA2_A_PRS","BSL_IL6R_PRS","BSL_Lp_PLA2_MASS_PRS","BSL_MCP1_PRS","BSL_hsCRP_PRS","BSL_IL1RA_PRS","BSL_IL6_PRS","BSL_Cr_PRS","eGFR_PRS","BSL_UA_PRS","BSL_PCSK9_PRS","BSL_TG_PRS","BSL_HDL_PRS","BSL_LDL_PRS","CEC_PRS","Apo_AI_PRS","Apo_CII_PRS","Apo_B_PRS","BSL_ANGPTL3_PRS","Apo_CIII_PRS","BSL_Lpa_PRS","Apo_AII_PRS","Apo_E_PRS","BSL_LDL_R_PRS","BSL_B12_PRS","BSL_HCY_PRS","BSL_MMA_PRS","BSL_B9_PRS","TMAVA_PRS","BETAINE_PRS","Carnitine_PRS","TMAO_PRS","Choline_PRS","tml_PRS","BSL_ADPN_PRS","BSL_YKL40_PRS","BSL_CP_PRS","BSL_CHOL_PRS","BSL_INS_PRS")
-riskfactors1<-c("BSL_Fib","BSL_DD","BSL_GA","BSL_sRAGE","BSL_AGEs","BSL_FPG","BSL_HbA1c","BSL_Lp_PLA2_A","BSL_IL6R","BSL_Lp_PLA2_MASS","BSL_MCP1","BSL_hsCRP","BSL_IL1RA","BSL_IL6","BSL_Cr","eGFR","BSL_UA","BSL_PCSK9","BSL_TG","BSL_HDL","BSL_LDL","CEC","Apo_AI","Apo_CII","Apo_B","BSL_ANGPTL3","Apo_CIII","BSL_Lpa","Apo_AII","Apo_E","BSL_LDL_R","BSL_B12","BSL_HCY","BSL_MMA","BSL_B9","TMAVA","BETAINE","Carnitine","TMAO","Choline","tml","BSL_ADPN","BSL_YKL40","BSL_CP","BSL_CHOL","BSL_INS")
-colors<-c("#FF0000","#FF0000","#00A08A","#00A08A","#00A08A","#00A08A","#00A08A","#A42820","#A42820","#A42820","#A42820","#A42820","#A42820","#A42820","#5BBCD6","#5BBCD6","#5BBCD6","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#F98400","#7294D4","#7294D4","#7294D4","#7294D4","#5F5647","#5F5647","#5F5647","#5F5647","#5F5647","#5F5647","#000000","#000000","#000000","#000000","#000000")
-Biomarkers<-c("Fib","D-dimer","GA","sRAGE","AGEs","FPG","HbA1c","Lp-PLA2_A","IL6R","Lp-PLA2_Mass","MCP1","hs-CRP","IL-1RA","IL6","Cr","eGFR","UA","PCSK9","TG","HDL","LDL","CEC","apo-AI","apo-CII","apo-B","ANGPTL3","apo-CIII","Lp(a)","apo-AII","apo-E","LDL-R","B12","Hcy","MMA","B9","TMAVA","Betaine","Carnitine","TMAO","Choline","TML","ADPN","YKL40","C-peptide","TC","Insulin")
+            riskfactors<-c("BSL_Fib_PRS","BSL_DD_PRS")
+            riskfactors1<-c("BSL_Fib","BSL_DD")
+            colors<-c("#FF0000","#FF0000")
+            Biomarkers<-c("Fib","D-dimer")
+            groups<-c("BSL_DD_Group","BSL_Fib_Group")
         }
     }
 }
@@ -207,14 +207,6 @@ prs_value<-prs_df[,c(riskfactors1)]
 h2_value<-h2_df[,c(riskfactors1)]
 
 
-if(F){
-znorm<-function(x){
-  k<-which(!is.na(x))
-  y<-(x[k]-mean(x[k]))/sd(x[k])
-  x[k]<-y
-  x
-}
-}
 
 if(outcome_type=="m3_diff_MRS_state" | outcome_type == "diff_MRS_state" | outcome_type == "PE" | outcome_type == "VTE" | outcome_type == "GIBLD" | outcome_type == "EP" | outcome_type == "INFECT"){
      group_function<-function(biomarker){
@@ -324,14 +316,6 @@ if(T){
 print(paste(prefix,"str all_meta_df"))
 str(all_meta_list)
 
-if(F){
-    res <- t(as.data.frame(all_meta_df, check.names = FALSE))
-print(paste(prefix,"str res"))
-str(res)
-
-    all_meta_df<-as.data.frame(res,stringsAsFactors = F)
-}
-
 
 all_meta_df = do.call(what = rbind, args = all_meta_list)
 print(paste(prefix,"str all_meta_df as.data.frame"))
@@ -357,12 +341,6 @@ print(paste(prefix,"str all_meta_df as.data.frame add info"))
 str(all_meta_df)
 write.table(all_meta_df,paste0(prefix,".meta.txt"),quote=F,sep="\t",row.names=F,append=F)
 
-if(F){
-pdf(paste0(prefix,"meta.pdf"), width = 10, height = 12) #change 3
-
-#df_sig<-df[df$p.value<0.05/1000,]
-#df<-head(df_sig,24)
-#df<-df_sig
 
 if(T){
 #making forest plot
